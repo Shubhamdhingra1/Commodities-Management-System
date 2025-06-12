@@ -34,7 +34,9 @@ import {
   Edit as EditIcon,
 } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const MotionTableRow = motion(TableRow);
 
 const Products = () => {
   const theme = useTheme();
@@ -275,73 +277,75 @@ const Products = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredProducts.map((product) => (
-                  <motion.tr
-                    key={product.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    component={TableRow}
-                    sx={{
-                      '&:hover': {
-                        bgcolor: theme.palette.action.hover,
-                      },
-                    }}
-                  >
-                    <TableCell>
-                      <Avatar
-                        src={product.image}
-                        alt={product.name}
-                        variant="rounded"
-                        sx={{
-                          width: 80,
-                          height: 80,
-                          boxShadow: theme.shadows[2],
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-                        {product.name}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Chip
-                        label={product.category}
-                        size="small"
-                        color="primary"
-                        variant="outlined"
-                      />
-                    </TableCell>
-                    <TableCell align="right">
-                      <Typography
-                        variant="subtitle1"
-                        color="primary"
-                        sx={{ fontWeight: 'bold' }}
-                      >
-                        ${product.price.toFixed(2)}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="right">
-                      <Chip
-                        label={`${product.stock} in stock`}
-                        size="small"
-                        color={product.stock > 20 ? 'success' : 'warning'}
-                      />
-                    </TableCell>
-                    {role === 'manager' && (
-                      <TableCell align="center">
-                        <IconButton
-                          onClick={() => handleOpenDialog(product)}
-                          color="primary"
-                          size="small"
-                        >
-                          <EditIcon />
-                        </IconButton>
+                <AnimatePresence>
+                  {filteredProducts.map((product) => (
+                    <MotionTableRow
+                      key={product.id}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      sx={{
+                        '&:hover': {
+                          bgcolor: theme.palette.action.hover,
+                        },
+                      }}
+                    >
+                      <TableCell>
+                        <Avatar
+                          src={product.image}
+                          alt={product.name}
+                          variant="rounded"
+                          sx={{
+                            width: 80,
+                            height: 80,
+                            boxShadow: theme.shadows[2],
+                          }}
+                        />
                       </TableCell>
-                    )}
-                  </motion.tr>
-                ))}
+                      <TableCell>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                          {product.name}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Chip
+                          label={product.category}
+                          size="small"
+                          color="primary"
+                          variant="outlined"
+                        />
+                      </TableCell>
+                      <TableCell align="right">
+                        <Typography
+                          variant="subtitle1"
+                          color="primary"
+                          sx={{ fontWeight: 'bold' }}
+                        >
+                          ${product.price.toFixed(2)}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="right">
+                        <Chip
+                          label={`${product.stock} in stock`}
+                          size="small"
+                          color={product.stock > 20 ? 'success' : 'warning'}
+                        />
+                      </TableCell>
+                      {role === 'manager' && (
+                        <TableCell align="center">
+                          <IconButton
+                            onClick={() => handleOpenDialog(product)}
+                            color="primary"
+                            size="small"
+                          >
+                            <EditIcon />
+                          </IconButton>
+                        </TableCell>
+                      )}
+                    </MotionTableRow>
+                  ))}
+                </AnimatePresence>
               </TableBody>
             </Table>
           </TableContainer>
