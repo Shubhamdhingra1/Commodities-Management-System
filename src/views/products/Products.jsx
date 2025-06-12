@@ -26,6 +26,7 @@ import {
   TableHead,
   TableRow,
   Avatar,
+  Fade,
 } from '@mui/material';
 import {
   Search as SearchIcon,
@@ -34,9 +35,6 @@ import {
   Edit as EditIcon,
 } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
-import { motion, AnimatePresence } from 'framer-motion';
-
-const MotionTableRow = motion(TableRow);
 
 const Products = () => {
   const theme = useTheme();
@@ -277,18 +275,14 @@ const Products = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                <AnimatePresence mode="wait">
-                  {filteredProducts.map((product) => (
-                    <MotionTableRow
-                      key={product.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.2 }}
+                {filteredProducts.map((product) => (
+                  <Fade in={true} key={product.id}>
+                    <TableRow
                       sx={{
                         '&:hover': {
                           bgcolor: theme.palette.action.hover,
                         },
+                        transition: 'background-color 0.2s ease-in-out',
                       }}
                     >
                       <TableCell>
@@ -343,9 +337,9 @@ const Products = () => {
                           </IconButton>
                         </TableCell>
                       )}
-                    </MotionTableRow>
-                  ))}
-                </AnimatePresence>
+                    </TableRow>
+                  </Fade>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
