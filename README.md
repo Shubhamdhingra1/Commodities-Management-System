@@ -1,4 +1,5 @@
 # Slooze Commodities Management System
+Live Url - https://commodities-management-system-hmeq-7mby1785a.vercel.app/
 
 A modern web application for managing commodities with role-based access control and theme switching capabilities.
 
