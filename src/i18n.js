@@ -1,9 +1,5 @@
 import i18n from 'i18next';
-<<<<<<< HEAD
 import { initReactI18next } from 'react-i18next'; 
-=======
-import { initReactI18next } from 'react-i18next';
->>>>>>> 5e5b845 (fix: install react-i18next for build)
 import en from './locales/en.json';
 import hi from './locales/hi.json';
 import fr from './locales/fr.json';
