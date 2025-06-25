@@ -107,6 +107,17 @@ function App() {
               }
             />
             <Route
+<<<<<<< HEAD
+=======
+              path="products/:id"
+              element={
+                <ProtectedRoute allowedRoles={['manager', 'storekeeper']}>
+                  <ProductDetail />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+>>>>>>> f703f8e (added some changes)
               path="profile"
               element={
                 <ProtectedRoute allowedRoles={['manager', 'storekeeper']}>
