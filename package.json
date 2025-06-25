@@ -17,21 +17,10 @@
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.9.0",
     "framer-motion": "^12.17.0",
-<<<<<<< HEAD
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.30.1"
-=======
-    "i18next": "^25.2.1",
-    "i18next-browser-languagedetector": "^8.2.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-i18next": "^15.5.3",
-    "react-redux": "^9.2.0",
-    "react-router-dom": "^6.30.1",
-    "recharts": "^3.0.0"
->>>>>>> f703f8e (added some changes)
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

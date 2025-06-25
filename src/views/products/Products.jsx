@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-
-import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Paper,
@@ -37,27 +35,18 @@ import {
   Edit as EditIcon,
 } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
-<<<<<<< HEAD
-=======
 import { useTranslation } from 'react-i18next';
->>>>>>> f703f8e (added some changes)
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
   const theme = useTheme();
   const { role } = useSelector((state) => state.auth);
-<<<<<<< HEAD
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-=======
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
->>>>>>> f703f8e (added some changes)
   const [openDialog, setOpenDialog] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [formData, setFormData] = useState({
@@ -67,17 +56,14 @@ const Products = () => {
     stock: '',
     image: '',
   });
+  const navigate = useNavigate();
 
   // Mock data for demonstration
   useEffect(() => {
     const mockProducts = [
       {
         id: 1,
-<<<<<<< HEAD
-        name: 'Diamond Engagement Ring',
-=======
         name: 'product.diamond_ring',
->>>>>>> f703f8e (added some changes)
         category: 'Rings',
         price: 4999.99,
         image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3',
@@ -85,11 +71,7 @@ const Products = () => {
       },
       {
         id: 2,
-<<<<<<< HEAD
-        name: 'Gold Chain Necklace',
-=======
         name: 'product.gold_chain_necklace',
->>>>>>> f703f8e (added some changes)
         category: 'Necklaces',
         price: 1299.99,
         image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3',
@@ -97,11 +79,7 @@ const Products = () => {
       },
       {
         id: 3,
-<<<<<<< HEAD
-        name: 'Pearl Earrings',
-=======
         name: 'product.pearl_earrings',
->>>>>>> f703f8e (added some changes)
         category: 'Earrings',
         price: 299.99,
         image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?ixlib=rb-4.0.3',
@@ -109,11 +87,7 @@ const Products = () => {
       },
       {
         id: 4,
-<<<<<<< HEAD
-        name: 'Sapphire Tennis Bracelet',
-=======
         name: 'product.sapphire_bracelet',
->>>>>>> f703f8e (added some changes)
         category: 'Bracelets',
         price: 3499.99,
         image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3',
@@ -121,11 +95,7 @@ const Products = () => {
       },
       {
         id: 5,
-<<<<<<< HEAD
-        name: 'Emerald Pendant',
-=======
         name: 'product.emerald_pendant',
->>>>>>> f703f8e (added some changes)
         category: 'Pendants',
         price: 899.99,
         image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?ixlib=rb-4.0.3',
@@ -133,11 +103,7 @@ const Products = () => {
       },
       {
         id: 6,
-<<<<<<< HEAD
-        name: 'Ruby Cocktail Ring',
-=======
         name: 'product.ruby_ring',
->>>>>>> f703f8e (added some changes)
         category: 'Rings',
         price: 2499.99,
         image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?ixlib=rb-4.0.3',
@@ -145,11 +111,7 @@ const Products = () => {
       },
       {
         id: 7,
-<<<<<<< HEAD
-        name: 'Diamond Tennis Necklace',
-=======
         name: 'product.diamond_necklace',
->>>>>>> f703f8e (added some changes)
         category: 'Necklaces',
         price: 5999.99,
         image: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?ixlib=rb-4.0.3',
@@ -157,11 +119,7 @@ const Products = () => {
       },
       {
         id: 8,
-<<<<<<< HEAD
-        name: 'Gold Hoop Earrings',
-=======
         name: 'product.gold_hoop_earrings',
->>>>>>> f703f8e (added some changes)
         category: 'Earrings',
         price: 199.99,
         image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?ixlib=rb-4.0.3',
@@ -169,11 +127,7 @@ const Products = () => {
       },
       {
         id: 9,
-<<<<<<< HEAD
-        name: 'Diamond Tennis Bracelet',
-=======
         name: 'product.diamond_bracelet',
->>>>>>> f703f8e (added some changes)
         category: 'Bracelets',
         price: 3999.99,
         image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3',
@@ -181,11 +135,7 @@ const Products = () => {
       },
       {
         id: 10,
-<<<<<<< HEAD
-        name: 'Gold Chain Bracelet',
-=======
         name: 'product.gold_chain_bracelet',
->>>>>>> f703f8e (added some changes)
         category: 'Bracelets',
         price: 799.99,
         image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3',
@@ -199,8 +149,6 @@ const Products = () => {
     }, 1000);
   }, []);
 
-<<<<<<< HEAD
-=======
   // Filter products based on search query and selected category
   useEffect(() => {
     let filtered = products;
@@ -223,7 +171,6 @@ const Products = () => {
   // Get unique categories for dropdown
   const categories = ['All', ...Array.from(new Set(products.map(product => product.category)))];
 
->>>>>>> f703f8e (added some changes)
   const handleOpenDialog = (product = null) => {
     if (product) {
       setEditingProduct(product);
@@ -280,13 +227,6 @@ const Products = () => {
     handleCloseDialog();
   };
 
-<<<<<<< HEAD
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-=======
->>>>>>> f703f8e (added some changes)
   return (
     <Box
       sx={{
@@ -299,10 +239,6 @@ const Products = () => {
       <Container maxWidth="xl">
         <Box sx={{ mb: 4 }}>
           <Typography variant="h4" component="h1" gutterBottom>
-<<<<<<< HEAD
-            Luxury Jewelry Collection
-          </Typography>
-=======
             {t('Luxury Jewelry Collection')}
           </Typography>
           
@@ -325,16 +261,11 @@ const Products = () => {
             </FormControl>
           </Box>
           
->>>>>>> f703f8e (added some changes)
           <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
             <TextField
               fullWidth
               variant="outlined"
-<<<<<<< HEAD
-              placeholder="Search jewelry..."
-=======
               placeholder={t('Search jewelry...')}
->>>>>>> f703f8e (added some changes)
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               InputProps={{
@@ -364,11 +295,7 @@ const Products = () => {
                   '&:hover': { bgcolor: theme.palette.success.dark },
                 }}
               >
-<<<<<<< HEAD
-                Add Product
-=======
                 {t('Add Product')}
->>>>>>> f703f8e (added some changes)
               </Button>
             )}
           </Box>
@@ -383,21 +310,12 @@ const Products = () => {
             <Table>
               <TableHead>
                 <TableRow>
-<<<<<<< HEAD
-                  <TableCell sx={{ width: '100px' }}>Image</TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Category</TableCell>
-                  <TableCell align="right">Price</TableCell>
-                  <TableCell align="right">Stock</TableCell>
-                  {role === 'manager' && <TableCell align="center">Actions</TableCell>}
-=======
                   <TableCell sx={{ width: '100px' }}>{t('Image')}</TableCell>
                   <TableCell>{t('Name')}</TableCell>
                   <TableCell>{t('Category')}</TableCell>
                   <TableCell align="right">{t('Price')}</TableCell>
                   <TableCell align="right">{t('Stock')}</TableCell>
                   {role === 'manager' && <TableCell align="center">{t('Actions')}</TableCell>}
->>>>>>> f703f8e (added some changes)
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -405,19 +323,13 @@ const Products = () => {
                   <Fade in={true} key={product.id}>
                     <TableRow
                       sx={{
-<<<<<<< HEAD
-=======
-                        cursor: 'pointer',
->>>>>>> f703f8e (added some changes)
                         '&:hover': {
                           bgcolor: theme.palette.action.hover,
+                          cursor: 'pointer',
                         },
                         transition: 'background-color 0.2s ease-in-out',
                       }}
-<<<<<<< HEAD
-=======
                       onClick={() => navigate(`/products/${product.id}`)}
->>>>>>> f703f8e (added some changes)
                     >
                       <TableCell>
                         <Avatar
@@ -433,20 +345,12 @@ const Products = () => {
                       </TableCell>
                       <TableCell>
                         <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-<<<<<<< HEAD
-                          {product.name}
-=======
                           {t(product.name)}
->>>>>>> f703f8e (added some changes)
                         </Typography>
                       </TableCell>
                       <TableCell>
                         <Chip
-<<<<<<< HEAD
-                          label={product.category}
-=======
                           label={t(product.category)}
->>>>>>> f703f8e (added some changes)
                           size="small"
                           color="primary"
                           variant="outlined"
@@ -463,11 +367,7 @@ const Products = () => {
                       </TableCell>
                       <TableCell align="right">
                         <Chip
-<<<<<<< HEAD
-                          label={`${product.stock} in stock`}
-=======
                           label={`${product.stock} ${t('in stock')}`}
->>>>>>> f703f8e (added some changes)
                           size="small"
                           color={product.stock > 20 ? 'success' : 'warning'}
                         />
@@ -475,7 +375,10 @@ const Products = () => {
                       {role === 'manager' && (
                         <TableCell align="center">
                           <IconButton
-                            onClick={() => handleOpenDialog(product)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleOpenDialog(product);
+                            }}
                             color="primary"
                             size="small"
                           >
@@ -495,42 +398,17 @@ const Products = () => {
       {role === 'manager' && (
         <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
           <DialogTitle>
-<<<<<<< HEAD
-            {editingProduct ? 'Edit Product' : 'Add New Product'}
-=======
             {editingProduct ? t('Edit Product') : t('Add New Product')}
->>>>>>> f703f8e (added some changes)
           </DialogTitle>
           <DialogContent>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 2 }}>
               <TextField
-<<<<<<< HEAD
-                label="Product Name"
-=======
                 label={t('Product Name')}
->>>>>>> f703f8e (added some changes)
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 fullWidth
               />
               <FormControl fullWidth>
-<<<<<<< HEAD
-                <InputLabel>Category</InputLabel>
-                <Select
-                  value={formData.category}
-                  label="Category"
-                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                >
-                  <MenuItem value="Rings">Rings</MenuItem>
-                  <MenuItem value="Necklaces">Necklaces</MenuItem>
-                  <MenuItem value="Earrings">Earrings</MenuItem>
-                  <MenuItem value="Bracelets">Bracelets</MenuItem>
-                  <MenuItem value="Pendants">Pendants</MenuItem>
-                </Select>
-              </FormControl>
-              <TextField
-                label="Price"
-=======
                 <InputLabel>{t('Category')}</InputLabel>
                 <Select
                   value={formData.category}
@@ -546,7 +424,6 @@ const Products = () => {
               </FormControl>
               <TextField
                 label={t('Price')}
->>>>>>> f703f8e (added some changes)
                 type="number"
                 value={formData.price}
                 onChange={(e) => setFormData({ ...formData, price: e.target.value })}
@@ -556,22 +433,14 @@ const Products = () => {
                 }}
               />
               <TextField
-<<<<<<< HEAD
-                label="Stock"
-=======
                 label={t('Stock')}
->>>>>>> f703f8e (added some changes)
                 type="number"
                 value={formData.stock}
                 onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
                 fullWidth
               />
               <TextField
-<<<<<<< HEAD
-                label="Image URL"
-=======
                 label={t('Image URL')}
->>>>>>> f703f8e (added some changes)
                 value={formData.image}
                 onChange={(e) => setFormData({ ...formData, image: e.target.value })}
                 fullWidth
@@ -579,15 +448,9 @@ const Products = () => {
             </Box>
           </DialogContent>
           <DialogActions>
-<<<<<<< HEAD
-            <Button onClick={handleCloseDialog}>Cancel</Button>
-            <Button onClick={handleSubmit} variant="contained">
-              {editingProduct ? 'Update' : 'Add'}
-=======
             <Button onClick={handleCloseDialog}>{t('Cancel')}</Button>
             <Button onClick={handleSubmit} variant="contained">
               {editingProduct ? t('Update') : t('Add')}
->>>>>>> f703f8e (added some changes)
             </Button>
           </DialogActions>
         </Dialog>

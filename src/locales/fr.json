@@ -70,17 +70,5 @@
   "Growth rate compared to last year.": "Taux de croissance par rapport à l'année dernière.",
   "Number of products low in stock.": "Nombre de produits en faible stock.",
   "New customers acquired this month.": "Nouveaux clients acquis ce mois-ci.",
-  "Revenue generated this month.": "Revenu généré ce mois-ci.",
-  "product.diamond_ring_desc": "Une superbe bague de fiançailles en diamant avec une pierre centrale taille brillant sertie sur platine.",
-  "product.gold_chain_necklace_desc": "Collier chaîne en or classique, parfait pour une élégance quotidienne.",
-  "product.pearl_earrings_desc": "Boucles d'oreilles en perles élégantes qui ajoutent une touche de sophistication à toute tenue.",
-  "product.sapphire_bracelet_desc": "Bracelet tennis saphir avec des pierres bleues étincelantes et un fermoir sécurisé.",
-  "product.emerald_pendant_desc": "Pendentif émeraude avec une pierre verte vibrante dans un cadre délicat.",
-  "product.ruby_ring_desc": "Bague cocktail rubis avec un rubis rouge profond entouré de diamants.",
-  "product.diamond_necklace_desc": "Collier tennis en diamant avec une rangée continue de diamants éblouissants.",
-  "product.gold_hoop_earrings_desc": "Créoles en or intemporelles, légères et confortables.",
-  "product.diamond_bracelet_desc": "Bracelet tennis en diamant avec une brillance et un éclat exceptionnels.",
-  "product.gold_chain_bracelet_desc": "Bracelet chaîne en or, une pièce polyvalente pour toute collection de bijoux.",
-  "Product not found": "Produit non trouvé",
-  "Back to Products": "Retour aux produits"
+  "Revenue generated this month.": "Revenu généré ce mois-ci."
 } 

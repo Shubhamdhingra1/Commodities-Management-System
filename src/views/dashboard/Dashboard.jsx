@@ -6,122 +6,118 @@ import {
   CardContent,
   Typography,
   useTheme,
+  Tooltip,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
 } from '@mui/material';
 import {
   Inventory as InventoryIcon,
   TrendingUp as TrendingUpIcon,
   Warning as WarningIcon,
   AttachMoney as MoneyIcon,
+  People as PeopleIcon,
+  Star as StarIcon,
 } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Legend } from 'recharts';
 
-const StatCard = ({ title, value, icon: Icon, color }) => {
+const StatCard = ({ title, value, icon: Icon, color, tooltip }) => {
   const theme = useTheme();
-  
   return (
-    <Card
-      sx={{
-        height: '100%',
-        bgcolor: theme.palette.background.paper,
-        transition: 'transform 0.2s',
-        '&:hover': {
-          transform: 'translateY(-4px)',
-        },
-      }}
-    >
-      <CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-          <Box
-            sx={{
-              bgcolor: `${color}20`,
-              borderRadius: 2,
-              p: 1,
-              mr: 2,
-            }}
-          >
-            <Icon sx={{ color: color, fontSize: 32 }} />
+    <Tooltip title={tooltip || ''} arrow>
+      <Card
+        sx={{
+          height: '100%',
+          bgcolor: theme.palette.background.paper,
+          transition: 'transform 0.2s',
+          '&:hover': {
+            transform: 'translateY(-4px)',
+            boxShadow: 6,
+          },
+        }}
+      >
+        <CardContent>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <Box
+              sx={{
+                bgcolor: `${color}20`,
+                borderRadius: 2,
+                p: 1,
+                mr: 2,
+              }}
+            >
+              <Icon sx={{ color: color, fontSize: 32 }} />
+            </Box>
+            <Typography variant="h6" color="text.secondary">
+              {title}
+            </Typography>
           </Box>
-          <Typography variant="h6" color="text.secondary">
-            {title}
+          <Typography variant="h4" component="div" sx={{ fontWeight: 600 }}>
+            {value}
           </Typography>
-        </Box>
-        <Typography variant="h4" component="div" sx={{ fontWeight: 600 }}>
-          {value}
-        </Typography>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Tooltip>
   );
 };
 
+const salesData = [
+  { month: 'Jan', sales: 8000, revenue: 12000 },
+  { month: 'Feb', sales: 9670, revenue: 13500 },
+  { month: 'Mar', sales: 10980, revenue: 15000 },
+  { month: 'Apr', sales: 12000, revenue: 17000 },
+  { month: 'May', sales: 9900, revenue: 14000 },
+  { month: 'Jun', sales: 12300, revenue: 18000 },
+];
+
+const lowStockProducts = [
+  { name: 'product.diamond_ring', stock: 3 },
+  { name: 'product.gold_chain_necklace', stock: 5 },
+  { name: 'product.sapphire_bracelet', stock: 2 },
+];
+
 const Dashboard = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" component="h1" gutterBottom sx={{ mb: 4 }}>
-<<<<<<< HEAD
-        Dashboard Overview
-=======
         {t('Dashboard Overview')}
->>>>>>> f703f8e (added some changes)
       </Typography>
 
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
           <StatCard
-<<<<<<< HEAD
-            title="Total Products"
-            value="1,234"
-            icon={InventoryIcon}
-            color={theme.palette.primary.main}
-=======
             title={t('Total Products')}
             value="1,234"
             icon={InventoryIcon}
             color={theme.palette.primary.main}
             tooltip={t('Total number of products in inventory.')}
->>>>>>> f703f8e (added some changes)
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <StatCard
-<<<<<<< HEAD
-            title="Total Sales"
-            value="$45,678"
-            icon={MoneyIcon}
-            color={theme.palette.success.main}
-=======
             title={t('Total Sales')}
             value="$45,678"
             icon={MoneyIcon}
             color={theme.palette.success.main}
             tooltip={t('Total sales made this year.')}
->>>>>>> f703f8e (added some changes)
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <StatCard
-<<<<<<< HEAD
-            title="Growth Rate"
-            value="+12.5%"
-            icon={TrendingUpIcon}
-            color={theme.palette.info.main}
-=======
             title={t('Growth Rate')}
             value="+12.5%"
             icon={TrendingUpIcon}
             color={theme.palette.info.main}
             tooltip={t('Growth rate compared to last year.')}
->>>>>>> f703f8e (added some changes)
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <StatCard
-<<<<<<< HEAD
-            title="Low Stock Items"
-            value="23"
-            icon={WarningIcon}
-            color={theme.palette.warning.main}
-=======
             title={t('Low Stock Items')}
             value="23"
             icon={WarningIcon}
@@ -145,13 +141,10 @@ const Dashboard = () => {
             icon={StarIcon}
             color={theme.palette.success.dark}
             tooltip={t('Revenue generated this month.')}
->>>>>>> f703f8e (added some changes)
           />
         </Grid>
       </Grid>
 
-<<<<<<< HEAD
-=======
       {/* Sales/Revenue Chart */}
       <Box sx={{ mt: 5, p: 3, bgcolor: theme.palette.background.paper, borderRadius: 2, boxShadow: 2 }}>
         <Typography variant="h6" gutterBottom>
@@ -191,22 +184,14 @@ const Dashboard = () => {
       </Box>
 
       {/* Recent Activity */}
->>>>>>> f703f8e (added some changes)
       <Box sx={{ mt: 4 }}>
         <Card sx={{ bgcolor: theme.palette.background.paper }}>
           <CardContent>
             <Typography variant="h6" gutterBottom>
-<<<<<<< HEAD
-              Recent Activity
-            </Typography>
-            <Typography color="text.secondary">
-              No recent activity to display.
-=======
               {t('Recent Activity')}
             </Typography>
             <Typography color="text.secondary">
               {t('No recent activity to display.')}
->>>>>>> f703f8e (added some changes)
             </Typography>
           </CardContent>
         </Card>

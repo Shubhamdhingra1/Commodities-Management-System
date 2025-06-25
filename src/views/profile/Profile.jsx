@@ -25,11 +25,13 @@ import {
   PhotoCamera as PhotoCameraIcon,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
   const [editedUser, setEditedUser] = useState({
     name: user?.name || '',
@@ -150,7 +152,7 @@ const Profile = () => {
                   gap: 3,
                 }}
               >
-                <Tooltip title={isEditing ? "Click to change profile picture" : ""}>
+                <Tooltip title={t('Upload Avatar')}>
                   <Box
                     sx={{
                       position: 'relative',
@@ -222,7 +224,7 @@ const Profile = () => {
               <CardContent>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
                   <Typography variant="h5" sx={{ fontWeight: 600 }}>
-                    Profile Information
+                    {t('Profile Information')}
                   </Typography>
                   {!isEditing ? (
                     <Button
@@ -230,7 +232,7 @@ const Profile = () => {
                       onClick={handleEdit}
                       variant="outlined"
                     >
-                      Edit Profile
+                      {t('Edit Profile')}
                     </Button>
                   ) : (
                     <Box sx={{ display: 'flex', gap: 1 }}>
@@ -240,7 +242,7 @@ const Profile = () => {
                         variant="contained"
                         color="primary"
                       >
-                        Save
+                        {t('Save')}
                       </Button>
                       <Button
                         startIcon={<CancelIcon />}
@@ -248,7 +250,7 @@ const Profile = () => {
                         variant="outlined"
                         color="error"
                       >
-                        Cancel
+                        {t('Cancel')}
                       </Button>
                     </Box>
                   )}
@@ -258,7 +260,7 @@ const Profile = () => {
                   <Grid item xs={12} sm={6}>
                     <TextField
                       fullWidth
-                      label="Name"
+                      label={t('Name')}
                       value={editedUser.name}
                       onChange={(e) =>
                         setEditedUser({ ...editedUser, name: e.target.value })
@@ -274,7 +276,7 @@ const Profile = () => {
                   <Grid item xs={12} sm={6}>
                     <TextField
                       fullWidth
-                      label="Email"
+                      label={t('Email')}
                       value={editedUser.email}
                       onChange={(e) =>
                         setEditedUser({ ...editedUser, email: e.target.value })
@@ -290,7 +292,7 @@ const Profile = () => {
                   <Grid item xs={12}>
                     <TextField
                       fullWidth
-                      label="Role"
+                      label={t('Role')}
                       value={editedUser.role === 'manager' ? 'Manager' : 'Store Keeper'}
                       disabled={true}
                       InputProps={{
@@ -311,7 +313,7 @@ const Profile = () => {
               <Grid item xs={12}>
                 <StatCard
                   icon={WorkIcon}
-                  title="Role"
+                  title={t('Role')}
                   value={user?.role === 'manager' ? 'Manager' : 'Store Keeper'}
                   color={theme.palette.primary.main}
                 />
@@ -319,7 +321,7 @@ const Profile = () => {
               <Grid item xs={12}>
                 <StatCard
                   icon={EmailIcon}
-                  title="Email"
+                  title={t('Email')}
                   value={user?.email || 'N/A'}
                   color={theme.palette.secondary.main}
                 />

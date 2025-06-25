@@ -1,118 +1,53 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { Box, Typography, Card, CardContent, CardMedia, Button, Chip, useTheme } from '@mui/material';
+import { Box, Typography, Card, CardContent, CardMedia, Chip, Button, useTheme } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useTranslation } from 'react-i18next';
 
+// Mock product data (should be replaced with real data or fetched from API)
 const mockProducts = [
   {
-    id: 1,
+    id: '1',
     name: 'product.diamond_ring',
     category: 'Rings',
     price: 4999.99,
     image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3',
     stock: 15,
-    description: 'product.diamond_ring_desc',
+    description: {
+      en: 'A stunning diamond engagement ring with a classic design.',
+      hi: 'एक शानदार हीरे की सगाई की अंगूठी, पारंपरिक डिज़ाइन के साथ।',
+      fr: 'Une superbe bague de fiançailles en diamant au design classique.'
+    }
   },
   {
-    id: 2,
+    id: '2',
     name: 'product.gold_chain_necklace',
     category: 'Necklaces',
     price: 1299.99,
     image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3',
     stock: 25,
-    description: 'product.gold_chain_necklace_desc',
+    description: {
+      en: 'Elegant gold chain necklace, perfect for any occasion.',
+      hi: 'शानदार सोने की चेन का हार, किसी भी अवसर के लिए उपयुक्त।',
+      fr: 'Collier chaîne en or élégant, parfait pour toutes les occasions.'
+    }
   },
-  {
-    id: 3,
-    name: 'product.pearl_earrings',
-    category: 'Earrings',
-    price: 299.99,
-    image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?ixlib=rb-4.0.3',
-    stock: 50,
-    description: 'product.pearl_earrings_desc',
-  },
-  {
-    id: 4,
-    name: 'product.sapphire_bracelet',
-    category: 'Bracelets',
-    price: 3499.99,
-    image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3',
-    stock: 10,
-    description: 'product.sapphire_bracelet_desc',
-  },
-  {
-    id: 5,
-    name: 'product.emerald_pendant',
-    category: 'Pendants',
-    price: 899.99,
-    image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?ixlib=rb-4.0.3',
-    stock: 20,
-    description: 'product.emerald_pendant_desc',
-  },
-  {
-    id: 6,
-    name: 'product.ruby_ring',
-    category: 'Rings',
-    price: 2499.99,
-    image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?ixlib=rb-4.0.3',
-    stock: 8,
-    description: 'product.ruby_ring_desc',
-  },
-  {
-    id: 7,
-    name: 'product.diamond_necklace',
-    category: 'Necklaces',
-    price: 5999.99,
-    image: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?ixlib=rb-4.0.3',
-    stock: 5,
-    description: 'product.diamond_necklace_desc',
-  },
-  {
-    id: 8,
-    name: 'product.gold_hoop_earrings',
-    category: 'Earrings',
-    price: 199.99,
-    image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?ixlib=rb-4.0.3',
-    stock: 100,
-    description: 'product.gold_hoop_earrings_desc',
-  },
-  {
-    id: 9,
-    name: 'product.diamond_bracelet',
-    category: 'Bracelets',
-    price: 3999.99,
-    image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3',
-    stock: 12,
-    description: 'product.diamond_bracelet_desc',
-  },
-  {
-    id: 10,
-    name: 'product.gold_chain_bracelet',
-    category: 'Bracelets',
-    price: 799.99,
-    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3',
-    stock: 30,
-    description: 'product.gold_chain_bracelet_desc',
-  },
+  // ... add more products as needed ...
 ];
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { t } = useTranslation();
   const theme = useTheme();
-  const [product, setProduct] = useState(null);
+  const { t, i18n } = useTranslation();
 
-  useEffect(() => {
-    const found = mockProducts.find((p) => p.id === Number(id));
-    setProduct(found);
-  }, [id]);
+  const product = mockProducts.find((p) => p.id === id);
 
   if (!product) {
     return (
       <Box sx={{ p: 4 }}>
-        <Typography variant="h6">{t('Product not found')}</Typography>
+        <Typography variant="h5" color="error">
+          {t('Product not found')}
+        </Typography>
         <Button startIcon={<ArrowBackIcon />} onClick={() => navigate(-1)} sx={{ mt: 2 }}>
           {t('Back to Products')}
         </Button>
@@ -136,15 +71,17 @@ const ProductDetail = () => {
           <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
             {t(product.name)}
           </Typography>
-          <Chip label={t(product.category)} color="primary" variant="outlined" sx={{ mb: 2 }} />
-          <Typography variant="h6" color="primary" sx={{ fontWeight: 600, mb: 1 }}>
+          <Chip label={t(product.category)} color="primary" sx={{ mb: 2 }} />
+          <Typography variant="h6" color="primary" sx={{ mb: 2 }}>
             ${product.price.toFixed(2)}
           </Typography>
           <Typography variant="body1" sx={{ mb: 2 }}>
-            <strong>{t('Stock')}:</strong> {product.stock}
+            {product.description[i18n.language] || product.description.en}
           </Typography>
-          <Typography variant="body1" sx={{ mb: 2 }}>
-            {t(product.description)}
+          <Typography variant="subtitle1" color={product.stock > 0 ? 'success.main' : 'error.main'}>
+            {product.stock > 0
+              ? `${product.stock} ${t('in stock')}`
+              : t('Out of stock')}
           </Typography>
         </CardContent>
       </Card>

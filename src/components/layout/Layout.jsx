@@ -17,6 +17,9 @@ import {
   Menu,
   MenuItem,
   useTheme,
+  FormControl,
+  Select,
+  InputLabel,
 } from '@mui/material';
 import {
   Menu as MenuIcon,
@@ -31,6 +34,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/slices/authSlice';
 import { toggleTheme } from '../../store/slices/themeSlice';
+import { useTranslation } from 'react-i18next';
 
 const drawerWidth = 240;
 
@@ -40,9 +44,10 @@ const Layout = () => {
   const dispatch = useDispatch();
   const { user, role } = useSelector((state) => state.auth);
   const { isDarkMode } = useSelector((state) => state.theme);
-  
+  const { t, i18n } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [language, setLanguage] = useState(i18n.language || 'en');
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -70,15 +75,21 @@ const Layout = () => {
     handleProfileMenuClose();
   };
 
+  const handleLanguageChange = (event) => {
+    const lang = event.target.value;
+    setLanguage(lang);
+    i18n.changeLanguage(lang);
+  };
+
   const menuItems = [
     {
-      text: 'Dashboard',
+      text: t('Dashboard'),
       icon: <DashboardIcon />,
       path: '/',
       roles: ['manager'],
     },
     {
-      text: 'Products',
+      text: t('Products'),
       icon: <InventoryIcon />,
       path: '/products',
       roles: ['manager', 'storekeeper'],
@@ -142,6 +153,18 @@ const Layout = () => {
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Slooze Commodities
           </Typography>
+          <FormControl size="small" sx={{ minWidth: 120, mr: 2 }}>
+            <InputLabel>{t('Language')}</InputLabel>
+            <Select
+              value={language}
+              label={t('Language')}
+              onChange={handleLanguageChange}
+            >
+              <MenuItem value="en">{t('English')}</MenuItem>
+              <MenuItem value="hi">{t('Hindi')}</MenuItem>
+              <MenuItem value="fr">{t('French')}</MenuItem>
+            </Select>
+          </FormControl>
           <IconButton color="inherit" onClick={handleThemeToggle}>
             {isDarkMode ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
@@ -164,8 +187,8 @@ const Layout = () => {
             open={Boolean(anchorEl)}
             onClose={handleProfileMenuClose}
           >
-            <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
-            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            <MenuItem onClick={handleProfileClick}>{t('Profile')}</MenuItem>
+            <MenuItem onClick={handleLogout}>{t('Logout')}</MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>

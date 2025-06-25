@@ -8,6 +8,7 @@ import Profile from './views/profile/Profile';
 import Layout from './components/layout/Layout';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { useTheme } from './hooks/useTheme';
+import ProductDetail from './views/products/ProductDetail';
 
 function App() {
   const { isDarkMode } = useTheme();
@@ -107,8 +108,6 @@ function App() {
               }
             />
             <Route
-<<<<<<< HEAD
-=======
               path="products/:id"
               element={
                 <ProtectedRoute allowedRoles={['manager', 'storekeeper']}>
@@ -117,7 +116,6 @@ function App() {
               }
             />
             <Route
->>>>>>> f703f8e (added some changes)
               path="profile"
               element={
                 <ProtectedRoute allowedRoles={['manager', 'storekeeper']}>
