@@ -1,5 +1,5 @@
 # Slooze Commodities Management System
-Live Url - https://commodities-management-system-besq.vercel.app/login
+Live Url - https://commodities-management-system-besq.vercel.app
 
 A modern web application for managing commodities with role-based access control and theme switching capabilities.
 
